@@ -1,0 +1,18 @@
+diff --git a/docker/docker-compose.yml b/docker/docker-compose.yml
+index 9edd76f..9d32fd5 100644
+--- a/docker/docker-compose.yml
++++ b/docker/docker-compose.yml
+@@ -395,7 +395,7 @@ services:
+       # Initialize the database settings with JWT_SECRET and JWT_EXP
+       - ./volumes/db/jwt.sql:/docker-entrypoint-initdb.d/init-scripts/99-jwt.sql:Z
+       # PGDATA directory is persisted between restarts
+-      - ./volumes/db/data:/var/lib/postgresql/data:Z
++      - pg-data:/var/lib/postgresql/data
+       # Changes required for Analytics support
+       - ./volumes/db/logs.sql:/docker-entrypoint-initdb.d/migrations/99-logs.sql:Z
+       # Use named volume to persist pgsodium decryption key between restarts
+@@ -427,3 +427,4 @@ services:
+ 
+ volumes:
+   db-config:
++  pg-data:
